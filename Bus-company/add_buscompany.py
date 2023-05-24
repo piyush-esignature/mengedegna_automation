@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import TimeoutException
 import time
 
 
@@ -93,25 +94,63 @@ if len(input_element) >= 2:
 else:
     print("No second input element found")
 
-#click Bus image button
+# #click Bus image button
+# wait = WebDriverWait(driver, 10)
+# buttons = driver.find_elements(By.CSS_SELECTOR, "span.MuiButton-label")
+# button_index = 4 # Replace with the desired index of the button
+# if button_index < len(buttons):
+#     # Click the button at the desired index
+#     buttons[button_index].click()
+    
+# #select Bus image button
 wait = WebDriverWait(driver, 10)
 buttons = driver.find_elements(By.CSS_SELECTOR, "span.MuiButton-label")
-button_index = 4  # Replace with the desired index of the button
+button_index = 4  # Replace with the desired index of the first button
+
 if button_index < len(buttons):
-    # Click the button at the desired index
-    buttons[button_index].click()
+    # Click the first button at the desired index using JavaScript click event
+    # driver.execute_script("arguments[0].click();", buttons[button_index])
+
+    # Find all file input elements
+    file_inputs = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "input[type='file']")))
+
+    # Set the file path for the first file you want to upload
+    file_path1 = "C:/Users/Lenovo/aaa.jpg"  # Replace with the actual file path for the first file
+
+    # Send the first file path to the first file input element
+    file_inputs[0].send_keys(file_path1)
+
+else:
+    print("No button found")
+
+#select company logo.
+wait = WebDriverWait(driver, 10)
+buttons2 = driver.find_elements(By.CSS_SELECTOR, "span.MuiButton-label")
+button_index2 = 5  # Replace with the desired index of the second button
+
+if button_index2 < len(buttons2):
+    # Click the second button at the desired index using JavaScript click event
+    # driver.execute_script("arguments[0].click();", buttons[button_index2])
+
+    # Find all file input elements
+    file_inputs = wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "input[type='file']")))
+
+    # Set the file path for the second file you want to upload
+    file_path2 = "C:/Users/Lenovo/bbb.jpg"  # Replace with the actual file path for the second file
+
+    # Send the second file path to the second file input element
+    file_inputs[1].send_keys(file_path2)
+
+else:
+    print("No button found")
 
 
 
 
-    # file_input = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, "input[type='file']")))
-    # file_input.send_keys("C:/Users/Lenovo/Desktop/Test files/Test data professional/Images with multiple sizes/building-66789.jpg")  # Replace with the actual file pat
 
 
 
-time.sleep(2)
-
-# Keep the browser open
+#  Keep the browser open 
 input("Press Enter to close the browser...")
 
 # Close the browser
