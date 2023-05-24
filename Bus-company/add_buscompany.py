@@ -141,12 +141,12 @@ if button_index2 < len(buttons2):
     # Send the second file path to the second file input element
     file_inputs[1].send_keys(file_path2)
 
-else:
+else:   
     print("No button found")
 
 
-
-
+input_element = driver.find_element(By.XPATH, '//input[@aria-invalid="false" and @type="number"]')
+input_element.send_keys("42")
 
 
 
